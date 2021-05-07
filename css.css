@@ -1,0 +1,105 @@
+/******************************************************************************
+* Defines default styles for site pages.                                      *
+******************************************************************************/
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+body {
+  background-image: url('file:///D:/new/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  /* background-color: #000000; */
+  color: #f0f0f0;
+  margin: 0;
+  font-family: 'Flavors', cursive;
+}
+
+img {
+  border-width: 0px;
+}
+
+#pointer {
+  position: absolute;
+  visibility: hidden;
+}
+
+#reply {
+  background-color: #202020;
+  border: 1px solid #a0a0a0;
+  color: #f0f0f0;
+ }
+
+#main {
+  margin: auto;
+  text-align: center;
+  width: 70%;
+}
+
+.contain{
+    margin-top: 3%;
+    background-color: #868580;
+    opacity: 0.8;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  #header-nav {
+    /* background-color: #868580; */
+    border-radius: 0;
+    border: 0;
+    /* opacity: 0.8; */
+
+    padding-top: 15px;
+    height: 100px;
+    margin-bottom: 40px;  
+    text-align: center;  
+  }
+
+.glow {
+    text-shadow: 1px 1px 2px rgb(253, 252, 252), 0 0 1em rgb(252, 252, 253), 0 0 0.2em rgb(245, 245, 253);
+    color: rgb(7, 7, 7);
+    font-size: 30px;
+}  
+
+ h1 { 
+    font-family: 'Lora', serif;
+    color: #d8dfd3;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1;
+    font-size: 40px;
+  }
+
+  .i{
+    margin-top: 2%;   
+    margin-left: auto;
+    margin-right:auto;
+    text-align: center;
+    /* color:rgb(250, 248, 248); */
+    font-size:30px;
+    padding-bottom: 3px;    
+    /* text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF; */
+    text-shadow: 1px 1px 2px rgb(253, 252, 252), 0 0 1em rgb(252, 252, 253), 0 0 0.2em rgb(245, 245, 253);
+    color: rgb(7, 7, 7);
+    /* margin-bottom: 2%; */
+}
+
+.h{
+    margin-left: auto;
+    margin-right:auto;
+    text-align: center;
+    font-size:30px;
+    max-width: 100%;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 2px rgb(253, 252, 252), 0 0 1em rgb(252, 252, 253), 0 0 0.2em rgb(245, 245, 253);
+    color: rgb(7, 7, 7);
+}

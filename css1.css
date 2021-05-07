@@ -1,0 +1,163 @@
+#header-nav {
+    /* background-color: #868580; */
+    border-radius: 0;
+    border: 0;
+    /* opacity: 0.8; */
+  }
+
+  #logo-img {    
+    background-color: #868580;
+    width: 130px;
+    height: 94px;   
+    margin-left: 20px;
+    margin-top: 20px;
+    float:left;
+  }
+
+  #link{
+    border-radius: 4px;
+    color: blueviolet;
+  }
+
+  #game{
+    text-shadow: 2px 2px;
+    margin-left: -33%;
+  }
+
+  .glow {
+    text-shadow: 1px 1px 2px rgb(253, 252, 252), 0 0 1em rgb(252, 252, 253), 0 0 0.2em rgb(245, 245, 253);
+    color: rgb(7, 7, 7);
+    font-size: 30px;
+}  
+  
+  /* @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff;
+    }
+    
+    to {
+      text-shadow: 0 0 20px #fff
+    }
+  } */
+  
+  .navbar-brand {
+    padding-top: 15px;
+    height: 100px;
+    margin-bottom: 0px;
+    margin-left: 35%;
+    /* text-align: center; */
+  }
+
+  .navbar-brand h1 { 
+    font-family: 'Lora', serif;
+    color: #d8dfd3;
+    text-transform: uppercase;
+    font-weight: bold;
+    /* text-shadow: 1px 1px 1px rgb(160, 159, 159); */
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1;
+  }
+ 
+  .itext{
+      margin-left: 30%;
+  }
+
+  .navbar-brand a:hover, .navbar-brand a:focus {
+    text-decoration: none;
+  }
+  
+  .navbar-brand p {
+    color: rgb(240, 232, 232);
+    text-transform: uppercase;
+    margin-top: 15px;
+  }
+  
+  .navbar-header button.navbar-toggle {
+    clear: both;
+    margin-top: -30px;
+  }
+
+body{
+    background-image: url('https://ak.picdn.net/shutterstock/videos/4801103/thumb/1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: rgb(256, 256, 256);
+    font-size: 30px;
+    margin:0;
+    font-family: 'Flavors', cursive;
+}
+
+/* .ins{
+  text-align: center;
+} */
+
+a {
+  color: aliceblue;
+}
+ 
+.contain{
+    /* margin-top: 20px; */
+    background-color: #868580;
+    opacity: 0.8;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.main-text{
+    margin: 5% 5% 5% 25%;
+    
+     /* background-color: antiquewhite; */
+}
+
+#tree{
+    float: right;
+}
+
+#g{
+    float: left;
+}
+
+.button {
+  border-radius: 8px;
+  /* background-image:url('https://scx2.b-cdn.net/gfx/news/hires/2018/1-illuminating.jpg'); */
+  background-color: white;
+  border-width:4px;
+  border-color: rgb(0, 0, 0);
+  color: #080808;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
