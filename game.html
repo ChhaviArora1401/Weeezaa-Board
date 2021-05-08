@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Flavors&display=swap" rel="stylesheet">
 
-<script type="text/javascript">//<![CDATA[
+<script type="text/javascript">
 
 var board, pointer;    // Board and pointer elements.
 var boardX, boardY;       // Coordinates.
@@ -54,13 +54,10 @@ posY = new Array(217, 191, 173, 157, 149, 144, 145, 143, 151, 163, 173, 192, 214
                  278, 246, 231, 222, 210, 207, 206, 209, 214, 226, 242, 261, 288,
                  354, 354, 354, 354, 354, 354, 354, 354, 354, 354, 
                   40, 42, 451, 170, 280); 
-// no = (596)// no = (42)//yes=(154)//yes=(40)//board name=(387)//board name=(30)//goodbye=(396)//goodbye=(451)
 
 window.onload = init;
 
-//-----------------------------------------------------------------------------
 // Initialize everything.
-//-----------------------------------------------------------------------------
 
 function init() {
 
@@ -83,24 +80,19 @@ questionFld = document.getElementById("question");
 replyFld = document.getElementById("reply");
 }
 
-//-----------------------------------------------------------------------------
-// These functions handle the movement of the pointer when revealing a
-// response.
-//-----------------------------------------------------------------------------
+// These functions handle the movement of the pointer when revealing a response.
 
 function handsOn() {
-
-inContact = true;
+  inContact = true;
 }
 
 function handsOff() {
-
-inContact = false;
-if (inReply) {
-  saveX = getElLeft(pointer);
-  saveY = getElTop(pointer);
-  shakepointer();
-}
+  inContact = false;
+  if (inReply) {
+    saveX = getElLeft(pointer);
+    saveY = getElTop(pointer);
+    shakepointer();
+  }
 }
 
 function startReply() {
@@ -275,10 +267,7 @@ moveElTo(pointer, x, y);
 timerID = window.setTimeout('shakepointer()', timeout);
 }
 
-//-----------------------------------------------------------------------------
-// This code handles the analysis of a question and generates a response.
-//-----------------------------------------------------------------------------
-
+// This handles the analysis of a question and generates a response.
 // Lists of responses by category.
 
 var none = new Array("ask", "ask me", "i am here", "fear not", "speak",
@@ -453,9 +442,7 @@ i = chars.indexOf("_");
 moveElTo(pointer, boardX + posX[i] - offsetX, boardY + posY[i] - offsetY);
 }
 
-//-----------------------------------------------------------------------------
 // Utility functions.
-//-----------------------------------------------------------------------------
 
 function clean(s) {
 
@@ -521,9 +508,7 @@ r = Math.floor(Math.random() * list.length);
 return list[r];
 }
 
-//-----------------------------------------------------------------------------
 // Positioning utility functions.
-//-----------------------------------------------------------------------------
 
 function getPageOffsetLeft(el) {
 
@@ -569,8 +554,9 @@ el.style.left = (getElLeft(el) + dx) + "px";
 el.style.top  = (getElTop(el)  + dy) + "px";
 }
 
-//]]></script>
+</script>
 </head>
+
 <body>
   <header>
     <nav id="header-nav">
@@ -579,13 +565,7 @@ el.style.top  = (getElTop(el)  + dy) + "px";
     </nav>
 </header>              
 
-<!-- absolutely positioned element for pointer image -->
-
 <div id="pointer">
-
-	<!-- pointer image with imagemap outlining the shape, allows -->
-	<!-- script to detect when mouse is over the pointer         -->
-
 	<img src="p.png" width="200" height="236" usemap="#pointerMap" alt="" />
 	<map id="pointerMap" name="pointerMap">
 		<area shape="poly"
@@ -598,10 +578,7 @@ el.style.top  = (getElTop(el)  + dy) + "px";
 </div>
 
 <div id="main">
-
-	<!-- form for inputting questions -->
-
-	<form action="" onsubmit="consult(); return false;">
+  	<form action="" onsubmit="consult(); return false;">
         <div>
             <p class="text i"> Tell us what you want to know:
                 <input id="question" name="question" type="text" size="50"/>
@@ -611,10 +588,10 @@ el.style.top  = (getElTop(el)  + dy) + "px";
             <p class="text h" align="center"> Hold your mouse lightly on the pointer and follow it as your answer is revealed. </p>
         </div>
 
-		<div>
-			<img id="board" src="board.jpg" width="800" height="533"/>
-		</div>
-    <div class="text i"> Your answer: <input id="reply" name="reply" type="text" readonly="readonly" size="50"/> </div>		
+      <div>
+        <img id="board" src="board.jpg" width="800" height="533"/>
+      </div>
+      <div class="text i"> Your answer: <input id="reply" name="reply" type="text" readonly="readonly" size="50"/> </div>		
 	</form>
 </div>
 

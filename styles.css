@@ -1,8 +1,8 @@
+/* Defines default styles for site page. */
+
 #header-nav {
-    /* background-color: #868580; */
     border-radius: 0;
     border: 0;
-    /* opacity: 0.8; */
   }
 
   #logo-img {    
@@ -30,22 +30,11 @@
     font-size: 30px;
 }  
   
-  /* @-webkit-keyframes glow {
-    from {
-      text-shadow: 0 0 10px #fff;
-    }
-    
-    to {
-      text-shadow: 0 0 20px #fff
-    }
-  } */
-  
   .navbar-brand {
     padding-top: 15px;
     height: 100px;
     margin-bottom: 0px;
     margin-left: 35%;
-    /* text-align: center; */
   }
 
   .navbar-brand h1 { 
@@ -53,7 +42,6 @@
     color: #d8dfd3;
     text-transform: uppercase;
     font-weight: bold;
-    /* text-shadow: 1px 1px 1px rgb(160, 159, 159); */
     margin-top: 0;
     margin-bottom: 0;
     line-height: 1;
@@ -89,16 +77,11 @@ body{
     font-family: 'Flavors', cursive;
 }
 
-/* .ins{
-  text-align: center;
-} */
-
 a {
   color: aliceblue;
 }
  
 .contain{
-    /* margin-top: 20px; */
     background-color: #868580;
     opacity: 0.8;
     padding-top: 10px;
@@ -109,8 +92,6 @@ a {
 
 .main-text{
     margin: 5% 5% 5% 25%;
-    
-     /* background-color: antiquewhite; */
 }
 
 #tree{
