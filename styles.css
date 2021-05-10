@@ -144,61 +144,191 @@ a {
 }
 
 /*Responsive Framework. */  
-  /*------ Tablet ------*/
-  @media (min-width: 768px) and (max-width: 991px){
-    .col-lg-12{
-      width: 100%;
-    }
+/*--------Desktop-------*/
+@media (min-width: 1512px){
+
+  .col-lg-12{
+    width: 100%;
+  }
 
   .col-lg-6{
     width:100%;
     height:90%;
   }
     
-.col-lg-4{
+  .col-lg-4{
     width: 25%;
   }
 
   #tree{
-     margin-top: -5%;
-      width: 30%;
-      height: 35%;
-    }
-
-
-#int{
-  margin-left: 7%;
-}
-    .col-lg-4{
-      width: 25%;
-    }
-
-#jj{
-  margin-left: 7%;
-}
-
-    #af{
-      text-align: center;
-      margin-left: -10%;
-    }
-
-    #ho{
-      margin-left:-35%;
-    }
-
-    #bu{
-      margin-left: 54%;
-    }
-#qq{
-  margin-left: -35%;
-}
-
-    #name{
-      width: 90%;
-      height: 90%;
-      margin-left: -15%;
-    }
+    margin-top: -5%;
+    width: 30%;
+    height: 35%;
   }
+
+  #int{
+  margin-left: 7%;
+  }
+
+  .col-lg-4{
+    width: 25%;
+  }
+
+  #htp{
+    margin-left: 35%;
+  }
+
+  #af{
+    text-align: center;
+    margin-left:-10%;
+  }
+
+  #ho{
+    margin-left:-40%;
+  }
+
+  #bu{
+    margin-left: 56%;
+  }
+
+  .contain{
+    margin-left: -3%;
+  }
+
+  #qq{
+    margin-left: -40%;
+  }
+
+  #name{
+    width: 80%;
+    height: 100%;
+    margin-left:-15%;
+    /* text-align: center; */
+  }  
+}
+
+@media (min-width: 991px) and (max-width: 1510px) {
+  .col-lg-12{
+    width: 100%;
+  }
+
+  .col-lg-6{
+    width:100%;
+    height:90%;
+  }
+    
+  .col-lg-4{
+    width: 25%;
+  }
+
+  #tree{
+    margin-top: -5%;
+    width: 30%;
+    height: 35%;
+  }
+
+  #int{
+  margin-left: 7%;
+  }
+
+  .col-lg-4{
+    width: 25%;
+  }
+
+  /* #htp{
+    margin-left: 35%;
+  } */
+
+  #tint{
+      margin-left: -20%;
+  }
+
+  #af{
+    text-align: center;
+    margin-left:-10%;
+  }
+
+  #ho{
+    margin-left:-40%;
+  }
+
+  #bu{
+    margin-left: 56%;
+  }
+
+  .contain{
+    margin-left: -3%;
+  }
+
+  #qq{
+    margin-left: -40%;
+  }
+
+  #name{
+    width: 80%;
+    height: 100%;
+    margin-left:-15%;
+    /* text-align: center; */
+  }  
+}
+
+
+ /*------ Tablet ------*/
+@media (min-width: 768px) and (max-width: 991px){
+  .col-lg-12{
+    width: 100%;
+  }
+
+  .col-lg-6{
+    width:100%;
+    height:90%;
+  }
+    
+  .col-lg-4{
+    width: 25%;
+  }
+
+  #tree{
+    margin-top: -5%;
+    width: 30%;
+    height: 35%;
+  }
+
+  #int{
+    margin-left: 7%;
+  }
+
+  .col-lg-4{
+    width: 25%;
+  }
+
+  #jj{
+    margin-left: 7%;
+  }
+
+  #af{
+    text-align: center;
+    margin-left: -10%;
+  }
+
+  #ho{
+    margin-left:-35%;
+  }
+
+  #bu{
+    margin-left: 54%;
+  }
+
+  #qq{
+    margin-left: -35%;
+  }
+
+  #name{
+    width: 90%;
+    height: 90%;
+    margin-left: -15%;
+  }
+}
   
   
   /*------ Mobile ------*/
