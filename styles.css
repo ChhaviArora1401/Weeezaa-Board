@@ -1,144 +1,398 @@
 /* Defines default styles for web page. */
 
 #header-nav {
-    border-radius: 0;
-    border: 0;
-  }
+  border-radius: 0;
+  border: 0;
+}
 
-  #logo-img {    
-    background-color: #868580;
-    width: 130px;
-    height: 94px;   
-    margin-left: 20px;
-    margin-top: 20px;
-    float:left;
-  }
+#logo-img {    
+  background-color: #868580;
+  width: 130px;
+  height: 94px;   
+  margin-left: 20px;
+  margin-top: 20px;
+  float:left;
+}
 
-  #link{
-    border-radius: 4px;
-    color: blueviolet;
-  }
+#link{
+  border-radius: 4px;
+  color: blueviolet;
+}
 
-  #game{
-    text-shadow: 2px 2px;
-    margin-left: -33%;
-  }
+#game{
+  text-shadow: 2px 2px;
+  margin-left: -33%;
+}
 
-  .glow {
-    text-shadow: 1px 1px 2px rgb(253, 252, 252), 0 0 1em rgb(252, 252, 253), 0 0 0.2em rgb(245, 245, 253);
-    color: rgb(7, 7, 7);
-    font-size: 30px;
+.glow {
+  text-shadow: 1px 1px 2px rgb(253, 252, 252), 0 0 1em rgb(252, 252, 253), 0 0 0.2em rgb(245, 245, 253);
+  color: rgb(7, 7, 7);
+  font-size: 30px;
 }  
-  
-  .navbar-brand {
-    padding-top: 15px;
-    height: 100px;
-    margin-bottom: 0px;
-    margin-left: 35%;
-  }
 
-  .navbar-brand h1 { 
-    font-family: 'Lora', serif;
-    color: #d8dfd3;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 1;
-  }
- 
-  .itext{
-      margin-left: 30%;
-  }
+.navbar-brand {
+  padding-top: 15px;
+  height: 100px;
+  margin-bottom: 0px;
+  margin-left: 35%;
+}
 
-  .navbar-brand a:hover, .navbar-brand a:focus {
-    text-decoration: none;
-  }
-  
-  .navbar-brand p {
-    color: rgb(240, 232, 232);
-    text-transform: uppercase;
-    margin-top: 15px;
-  }
-  
-  .navbar-header button.navbar-toggle {
-    clear: both;
-    margin-top: -30px;
-  }
+.navbar-brand h1 { 
+  font-family: 'Lora', serif;
+  color: #d8dfd3;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.itext{
+    margin-left: 30%;
+}
+
+.navbar-brand a:hover, .navbar-brand a:focus {
+  text-decoration: none;
+}
+
+.navbar-brand p {
+  color: rgb(240, 232, 232);
+  text-transform: uppercase;
+  margin-top: 15px;
+}
+
+.navbar-header button.navbar-toggle {
+  clear: both;
+  margin-top: -30px;
+}
+
+#hackground{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100vh;
+background-image: url("https://ak.picdn.net/shutterstock/videos/4801103/thumb/1.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+z-index: -1;
+}
 
 body{
-    background-image: url('https://ak.picdn.net/shutterstock/videos/4801103/thumb/1.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    color: rgb(256, 256, 256);
-    font-size: 30px;
-    margin:0;
-    font-family: 'Flavors', cursive;
+  color: rgb(256, 256, 256);
+  font-size: 30px;
+  margin:0;
+  font-family: 'Flavors', cursive;
+  max-width: 100%;
 }
 
 a {
-  color: aliceblue;
+color: aliceblue;
 }
- 
+
 .contain{
-    background-color: #868580;
-    opacity: 0.8;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-    font-size: 15px;
+  background-color: #868580;
+  opacity: 0.8;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 15px;
 }
 
 .main-text{
-    margin: 5% 5% 5% 25%;
+  margin: 5% 5% 5% 25%;
 }
 
 #tree{
-    float: right;
+  float: right;
 }
 
 #g{
-    float: left;
+  float: left;
 }
 
 .button {
-  border-radius: 8px;
-  /* background-image:url('https://scx2.b-cdn.net/gfx/news/hires/2018/1-illuminating.jpg'); */
-  background-color: white;
-  border-width:4px;
-  border-color: rgb(0, 0, 0);
-  color: #080808;
-  text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
+border-radius: 8px;
+/* background-image:url('https://scx2.b-cdn.net/gfx/news/hires/2018/1-illuminating.jpg'); */
+background-color: white;
+border-width:4px;
+border-color: rgb(0, 0, 0);
+color: #080808;
+text-align: center;
+font-size: 28px;
+padding: 20px;
+width: 200px;
+transition: all 0.5s;
+cursor: pointer;
+margin: 5px;
 }
 
 .button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
+cursor: pointer;
+display: inline-block;
+position: relative;
+transition: 0.5s;
 }
 
 .button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
+content: '\00bb';
+position: absolute;
+opacity: 0;
+top: 0;
+right: -20px;
+transition: 0.5s;
 }
 
 .button:hover span {
-  padding-right: 25px;
+padding-right: 25px;
 }
 
 .button:hover span:after {
-  opacity: 1;
-  right: 0;
+opacity: 1;
+right: 0;
+}
+
+/*Responsive Framework. */  
+/*--------Desktop-------*/
+@media (min-width: 1512px){
+
+.col-lg-12{
+  width: 100%;
+}
+
+.col-lg-6{
+  height:90%;
+}
+  
+.col-lg-4{
+  width: 25%;
+}
+
+#tree{
+  margin-top: -5%;
+  width: 30%;
+  height: 35%;
+}
+
+.col-lg-4{
+  width: 25%;
+}
+
+#htp{
+  margin-left: 12%;
+}
+
+#intro{
+  text-align: center;
+  max-width: fit-content;
+  width: 1000px;
+}
+
+#ho{
+  margin-left: 15%;
+}
+
+#bu{
+  margin-left:25%;
+}
+
+.button{
+  margin-left: 32%;
+}
+
+.contain{
+  margin-left: -5%;
+}
+
+#name{
+  width: 80%;
+  height: 100%;
+  margin-left:-15%;
+  /* text-align: center; */
+}  
+}
+
+@media (min-width: 991px) and (max-width: 1510px) {
+.col-lg-12{
+  width: 100%;
+}
+
+.col-lg-6{
+  /* width:100%; */
+  height:90%;
+}
+  
+.col-lg-4{
+  width: 25%;
+}
+
+#tree{
+  margin-top: -5%;
+  width: 30%;
+  height: 35%;
+}
+
+.col-lg-4{
+  width: 25%;
+}
+
+#intro{
+  margin-left: 10%;
+  margin-right: auto;
+  padding-right: 30%;
+  padding-left: 30%;
+  text-align: center;
+  max-width: 70%;
+}
+
+.main-text{
+  text-align: center;
+  margin-left:-10%;
+}
+
+#ho{
+  margin-left: 9%;
+}
+
+#bu{
+  margin-left:10%;
+}
+
+.button{
+  margin-left: 32%;
+}
+
+.contain{
+  margin-left: -5%;
+}
+
+#name{
+  width: 80%;
+  height: 100%;
+  margin-left:-15%;
+  /* text-align: center; */
+}  
+}
+
+
+/*------ Tablet ------*/
+@media (min-width: 768px) and (max-width: 991px){
+.col-lg-12{
+  width: 100%;
+}
+
+.col-lg-6{
+  /* width:100%; */
+  height:90%;
+}
+  
+.col-lg-4{
+  width: 25%;
+}
+
+#tree{
+  margin-top: -5%;
+  width: 30%;
+  height: 35%;
+}
+
+#intro{
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 15%;
+  padding-left: 30%;
+  text-align: center;
+  max-width: 70%;
+}
+
+#int{
+  margin-left: 7%;
+}
+
+.col-lg-4{
+  width: 25%;
+}
+
+#jj{
+  margin-left: 7%;
+}
+
+.main-text{
+  text-align: center;
+  margin-left: -10%;
+}
+
+#ho{
+  margin-left:10%;
+}
+
+#bu{
+  margin-left: 35%;
+}
+
+#qq{
+  margin-left: -35%;
+}
+
+#name{
+  width: 90%;
+  height: 90%;
+  margin-left: -15%;
+}
+}
+
+
+/*------ Mobile ------*/
+@media (max-width: 767px){
+
+
+  #logo-img {
+    width: 65px;
+    height: 47px;
+  }
+
+  #img{
+    width: 65px;
+    height: 47px;
+  }
+
+  #intro{
+    margin-left: auto;
+    margin-right: auto;
+    /* padding-right: 30%;
+    padding-left: 30%; */
+    text-align: center;
+    max-width: 70%;
+  }
+  
+  .col-lg-4{
+    width: 25%;
+  }
+
+  .main-text{
+    text-align: center;
+    margin-left: -19%;
+  }
+
+  #bu{
+    margin-left: 15%;
+  }
+
+  .main-text{
+    margin-left: 10%;
+  }
+
+  #qq{
+    margin-left: -20%;
+  }
+
+  .button{
+    margin-left: 10%;
+  }
+
+  #name{
+    width: 100%;
+    height: 80%;
+    margin-left: -15%;
+  }
 }

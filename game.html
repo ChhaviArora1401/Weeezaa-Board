@@ -1,604 +1,604 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Weeezaa Board</title>
-<link rel="icon" href="favicon1.jpg" type="image/x-icon">
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<link href="css.css" rel="stylesheet" type="text/css" />
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Flavors&display=swap" rel="stylesheet">
+  <title>Weeezaa Board</title>
+  <link rel="icon" href="favicon1.jpg" type="image/x-icon">
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <link href="css.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Flavors&display=swap" rel="stylesheet">
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
-var board, pointer;    // Board and pointer elements.
-var boardX, boardY;       // Coordinates.
-var nextX, nextY;
-var saveX, saveY;
-var posX, posY;
+    var board, pointer;    // Board and pointer elements.
+    var boardX, boardY;       // Coordinates.
+    var nextX, nextY;
+    var saveX, saveY;
+    var posX, posY;
 
-var offsetX = 75;         // Offset of viewport on pointer.
-var offsetY = 70;
+    var offsetX = 75;         // Offset of viewport on pointer.
+    var offsetY = 70;
 
-var questionFld,          // Question and reply form fields.
-    replyFld;
+    var questionFld,          // Question and reply form fields.
+      replyFld;
 
-var inReply   = false;    // Status flags.
-var inContact = false;
+    var inReply = false;    // Status flags.
+    var inContact = false;
 
-var response;             // Response to spell out.
-var nextChar;             // Next character to move to.
+    var response;             // Response to spell out.
+    var nextChar;             // Next character to move to.
 
-var step    =    5;       // Used for movement.
-var timeout =   50;
-var pause   = 2000;
-var angle;
-var timerID;
+    var step = 5;       // Used for movement.
+    var timeout = 50;
+    var pause = 2000;
+    var angle;
+    var timerID;
 
-// Board positions, each letter and number has position. In addition, other
-// symbols are used for other areas of the board:
-// ! = 'yes'
-// ~ = 'no'
-// ^ = 'goodbye'
-// _ = rest position
-// and a space is a blank spot on the board.
+    // Board positions, each letter and number has position. In addition, other
+    // symbols are used for other areas of the board:
+    // ! = 'yes'
+    // ~ = 'no'
+    // ^ = 'goodbye'
+    // _ = rest position
+    // and a space is a blank spot on the board.
 
-var chars = "abcdefghijklmnopqrstuvwxyz1234567890!~^_ ";
+    var chars = "abcdefghijklmnopqrstuvwxyz1234567890!~^_ ";
 
-// Set up character positions.
+    // Set up character positions.
 
-posX = new Array(110, 157, 205, 251, 297, 339, 381, 432, 468, 499, 540, 579, 625,
-                 132, 180, 217, 265, 309, 349, 375, 417, 462, 510, 557, 599, 636, 
-                 179, 223, 268, 317, 356, 400, 440, 480, 520, 563, 
-                 154, 596, 396, 387, 382);
-posY = new Array(217, 191, 173, 157, 149, 144, 145, 143, 151, 163, 173, 192, 214,
-                 278, 246, 231, 222, 210, 207, 206, 209, 214, 226, 242, 261, 288,
-                 354, 354, 354, 354, 354, 354, 354, 354, 354, 354, 
-                  40, 42, 451, 170, 280); 
+    posX = new Array(110, 157, 205, 251, 297, 339, 381, 432, 468, 499, 540, 579, 625,
+      132, 180, 217, 265, 309, 349, 375, 417, 462, 510, 557, 599, 636,
+      179, 223, 268, 317, 356, 400, 440, 480, 520, 563,
+      154, 596, 396, 387, 382);
+    posY = new Array(217, 191, 173, 157, 149, 144, 145, 143, 151, 163, 173, 192, 214,
+      278, 246, 231, 222, 210, 207, 206, 209, 214, 226, 242, 261, 288,
+      354, 354, 354, 354, 354, 354, 354, 354, 354, 354,
+      40, 42, 451, 170, 280);
 
-window.onload = init;
+    window.onload = init;
 
-// Initialize everything.
+    // Initialize everything.
 
-function init() {
+    function init() {
 
-var i;
+      var i;
 
-// Initialize board and pointer.
+      // Initialize board and pointer.
 
-board = document.getElementById("board");
-boardX = getPageOffsetLeft(board);
-boardY = getPageOffsetTop(board);
+      board = document.getElementById("board");
+      boardX = getPageOffsetLeft(board);
+      boardY = getPageOffsetTop(board);
 
-pointer = document.getElementById("pointer");
-i = chars.indexOf("_");
-moveElTo(pointer, boardX + posX[i] - offsetX, boardY + posY[i] - offsetY);
-pointer.style.visibility = "visible";
+      pointer = document.getElementById("pointer");
+      i = chars.indexOf("_");
+      moveElTo(pointer, boardX + posX[i] - offsetX, boardY + posY[i] - offsetY);
+      pointer.style.visibility = "visible";
 
-// Get the question and reply fields.
+      // Get the question and reply fields.
 
-questionFld = document.getElementById("question");
-replyFld = document.getElementById("reply");
-}
+      questionFld = document.getElementById("question");
+      replyFld = document.getElementById("reply");
+    }
 
-// These functions handle the movement of the pointer when revealing a response.
+    // These functions handle the movement of the pointer when revealing a response.
 
-function handsOn() {
-  inContact = true;
-}
+    function handsOn() {
+      inContact = true;
+    }
 
-function handsOff() {
-  inContact = false;
-  if (inReply) {
-    saveX = getElLeft(pointer);
-    saveY = getElTop(pointer);
-    shakepointer();
-  }
-}
+    function handsOff() {
+      inContact = false;
+      if (inReply) {
+        saveX = getElLeft(pointer);
+        saveY = getElTop(pointer);
+        shakepointer();
+      }
+    }
 
-function startReply() {
+    function startReply() {
 
-// Start revealing a response.
+      // Start revealing a response.
 
-response += "_";
-if (!inContact) {
-  saveX = getElLeft(pointer);
-  saveY = getElTop(pointer);
-  shakepointer();
-}
-if (getNext()) {
-  inReply = true;
-  movepointer();
-}
-else
-  inReply = false;
-}
-
-function endReply() {
-
-// Done revealing the response.
-
-nextChar = "";
-inReply = false;
-}
-
-function getNext() {
-
-var i;
-
-// Find the next character to move to.
-
-if (response == "")
-  return false;
-
-nextChar = response.substr(0, 1)
-response = response.substr(1);
-for (i = 0; i < chars.length; i++)
-  if (chars.charAt(i) == nextChar.toLowerCase()) {
-    nextX = posX[i];
-    nextY = posY[i];
-    return true;
-  }
-
-return false;
-}
-
-function movepointer() {
-
-var i, dx, dy, last, theta;
-
-// If no reply to give, return.
-
-if (!inReply)
-  return;
-
-// If mouse is on pointer, move it.
-
-if (inContact) {
-
-  // Move pointer toward the designated character.
-
-  dx = boardX + nextX - getElLeft(pointer) - offsetX;
-  dy = boardY + nextY - getElTop(pointer) - offsetY;
-  theta = Math.round(Math.atan2(-dy, dx) * 180 / Math.PI);
-  if (theta < 0)
-    theta += 360;
-
-  // If we reached the character, pause and start on the next one.
-
-  if (Math.abs(dx) < step && Math.abs(dy) < step) {
-
-    // Finish the move and add the character to the reply display.
-
-    moveElBy(pointer, dx, dy);
-    if (nextChar == "!")
-    replyFld.value = "YES";
-    else if (nextChar == "~")
-    replyFld.value = "NO";
-    else if (nextChar == "^")
-    replyFld.value = "GOOD BYE";
-  else if (nextChar != "_")
-      replyFld.value += nextChar.toUpperCase();
-
-    // Circle if next character is the same as the last.
-
-    last = nextChar;
-    if (getNext()) {
-      if (nextChar == last) {
-        angle = 0;
-        timerID = window.setTimeout('circlepointer()', pause);
+      response += "_";
+      if (!inContact) {
+        saveX = getElLeft(pointer);
+        saveY = getElTop(pointer);
+        shakepointer();
+      }
+      if (getNext()) {
+        inReply = true;
+        movepointer();
       }
       else
-        timerID = window.setTimeout('movepointer()', pause);
-      return;
+        inReply = false;
     }
 
-    // End movement if no more characters in reply.
+    function endReply() {
 
-    else {
-      endReply();
-      return;
+      // Done revealing the response.
+
+      nextChar = "";
+      inReply = false;
     }
-  }
 
-  // If not, move it.
+    function getNext() {
 
-  else if (theta > 23 && theta <= 68)
-    moveElBy(pointer, step, -step);
-  else if (theta > 68 && theta <= 113)
-    moveElBy(pointer, 0, -step);
-  else if (theta > 113 && theta <= 158)
-    moveElBy(pointer, -step, -step);
-  else if (theta > 158 && theta <= 203)
-    moveElBy(pointer, -step, 0);
-  else if (theta > 203 && theta <= 248)
-    moveElBy(pointer, -step, step);
-  else if (theta > 248 && theta <= 293)
-    moveElBy(pointer, 0, step);
-  else if (theta > 293 && theta <= 338)
-    moveElBy(pointer, step, step);
-  else
-    moveElBy(pointer, step, 0);
-}
+      var i;
 
-// Set up next call.
+      // Find the next character to move to.
 
-timerID = window.setTimeout('movepointer()', timeout);
-}
+      if (response == "")
+        return false;
 
-function circlepointer() {
+      nextChar = response.substr(0, 1)
+      response = response.substr(1);
+      for (i = 0; i < chars.length; i++)
+        if (chars.charAt(i) == nextChar.toLowerCase()) {
+          nextX = posX[i];
+          nextY = posY[i];
+          return true;
+        }
 
-var x, y;
-
-// Mouse on pointer?
-
-if (!inContact) {
-  timerID = window.setTimeout('circlepointer()', timeout);
-  return;
-}
-
-// Move the pointer in a small circle.
-
-x = getElLeft(pointer) + step * Math.cos(angle);
-y = getElTop(pointer) - step * Math.sin(angle);
-moveElTo(pointer, x, y);
-angle += Math.PI / 10;
-if (angle < 2 * Math.PI)
-  timerID = window.setTimeout('circlepointer()', timeout);
-else
-  movepointer();
-}
-
-function shakepointer() {
-
-var dx, dy, x, y;
-
-// Mouse on pointer?
-
-if (inContact)
-  return;
-
-// Randomly move pointer around it's original position.
-
-dx = Math.floor(Math.random() * 5) - 2;
-dy = Math.floor(Math.random() * 5) - 2;
-x = saveX + dx;
-y = saveY + dy;
-moveElTo(pointer, x, y);
-timerID = window.setTimeout('shakepointer()', timeout);
-}
-
-// This handles the analysis of a question and generates a response.
-// Lists of responses by category.
-
-var none = new Array("ask", "ask me", "i am here", "fear not", "speak",
-                   "speak to me", "i hear", "i await");
-var days = new Array("sunday", "monday", "tuesday", "wednesday", "thursday",
-                   "friday", "saturday");
-var months = new Array("january", "february", "march", "april", "may", "june",
-                     "july", "august", "september", "october", "november",
-                     "december");
-var seasons = new Array("spring", "summer", "fall", "winter");
-var times = new Array("never", "soon", "very soon", "tomorrow", "next week",
-                    "not now", "later", "in time", "not yet", "midnight",
-          "at the proper time", "during the day", "at night");
-var people = new Array("a friend", "a stranger", "yourself", "no one",
-                     "an associate", "one to be feared", "a liar",
-           "an imposter", "one unknown", "some one familiar",
-                     "one dear", "unseen hands", "a trusted one", "an enemy",
-                     "one close", "an old friend", "one from your past");
-var places = new Array("far away", "close", "very near", "someplace new",
-                     "not here", "at a crossroads", "a familiar place",
-           "near water", "location unknown", "a dark place");
-var other = new Array("cannot say", "cannot tell", "unknown", "ask later",
-                    "not known", "not seen", "leave me now", "maybe later",
-          "future hazy", "too dark", "not clear", "unclear");
-
-function consult() {
-
-var question, words, r;
-var i, today;
-
-// Stop any current animation.
-
-if (timerID)
-  clearTimeout(timerID);
-response = "";
-inReply = false;
-
-// Clear any current reply.
-replyFld.value = "";
-
-// Make up a response based on keywords in the question.
-
-question = questionFld.value;
-question = clean(question);
-words = question.split(" ");
-r = Math.random();
-
-// No question?
-
-if (question == "") {
-  response = pickFromList(none);
-  startReply();
-  return false;
-}
-
-// Look for two words surrounding 'or' and pick one at random.
-
-if (words.length >= 3)
-  for (i = 0; i < words.length - 3; i++)
-    if (words[i + 1] == "or") {
-      if (r < .5)
-        response = words[i];
-      else
-        response = words[i + 2];
-      startReply();
       return false;
     }
 
-// At random, give an ambiguous response.
+    function movepointer() {
 
-if (r < .1)
-  response = pickFromList(other);
+      var i, dx, dy, last, theta;
 
-// Time related question?
+      // If no reply to give, return.
 
-else if (inList(words, "day")) {         // Pick a random day.
-  if (r < .7)
-    response = pickFromList(days);
-  else
-    response = pickFromList(times);
-}
-else if (inList(words, "month")) {    // Pick a random month.
-  if (r < .7)
-    response = pickFromList(months);
-  else
-    response = pickFromList(times);
-}
-else if (inList(words, "time"))            // Pick random time.
-  response = Math.floor(Math.random() * 12) + 1;
-else if (inList(words, "when")) {          // Pick a random time.
-  if (r < .3)
-    response = pickFromList(days);
-  if (r < .4)
-    response = pickFromList(months);
-  if (r < .5)
-    response = pickFromList(seasons);
-  else
-    response = pickFromList(times);
-}
+      if (!inReply)
+        return;
 
-// Asking for a number?
+      // If mouse is on pointer, move it.
 
-else if (inList(words, "how") &&
-    (inList(words, "few") ||
-     inList(words, "often") ||
-     inList(words, "many") ||
-     inList(words, "much"))) {
-  response = Math.round(Math.random() * 10) + 1;    // Give a one or two digit
-  if (response != 10 && r < .5)                     // random number.
-    response += Math.round(Math.random() * 10);
-}
+      if (inContact) {
 
-// Asking about a person?
+        // Move pointer toward the designated character.
 
-else if (inList(words, "who")) {
-  response = pickFromList(people);
-}
+        dx = boardX + nextX - getElLeft(pointer) - offsetX;
+        dy = boardY + nextY - getElTop(pointer) - offsetY;
+        theta = Math.round(Math.atan2(-dy, dx) * 180 / Math.PI);
+        if (theta < 0)
+          theta += 360;
 
-// Asking about a place?
+        // If we reached the character, pause and start on the next one.
 
-else if (inList(words, "where"))
-  response = pickFromList(places);
+        if (Math.abs(dx) < step && Math.abs(dy) < step) {
 
-// Asking about a thing?
+          // Finish the move and add the character to the reply display.
 
-else if (inList(words, "what"))
-  response = pickFromList(other);
+          moveElBy(pointer, dx, dy);
+          if (nextChar == "!")
+            replyFld.value = "YES";
+          else if (nextChar == "~")
+            replyFld.value = "NO";
+          else if (nextChar == "^")
+            replyFld.value = "GOOD BYE";
+          else if (nextChar != "_")
+            replyFld.value += nextChar.toUpperCase();
 
-// Yes or no question?
+          // Circle if next character is the same as the last.
 
-else if (inList(words, "am") ||
-         inList(words, "is") ||
-         inList(words, "are") ||
-         inList(words, "does") ||
-         inList(words, "do") ||
-         inList(words, "can") ||
-         inList(words, "will") ||
-         inList(words, "may") ||
-         inList(words, "could") ||
-         inList(words, "would") ||
-         inList(words, "should")) {
-  if (r < .5)
-    response = "!";
-  else
-    response = "~";
-}
+          last = nextChar;
+          if (getNext()) {
+            if (nextChar == last) {
+              angle = 0;
+              timerID = window.setTimeout('circlepointer()', pause);
+            }
+            else
+              timerID = window.setTimeout('movepointer()', pause);
+            return;
+          }
 
-// All else failed, give a nice, ambiguous response.
+          // End movement if no more characters in reply.
 
-if (response == "")
-  response = pickFromList(other);
+          else {
+            endReply();
+            return;
+          }
+        }
 
-// Start the animation.
+        // If not, move it.
 
-startReply();
-}
+        else if (theta > 23 && theta <= 68)
+          moveElBy(pointer, step, -step);
+        else if (theta > 68 && theta <= 113)
+          moveElBy(pointer, 0, -step);
+        else if (theta > 113 && theta <= 158)
+          moveElBy(pointer, -step, -step);
+        else if (theta > 158 && theta <= 203)
+          moveElBy(pointer, -step, 0);
+        else if (theta > 203 && theta <= 248)
+          moveElBy(pointer, -step, step);
+        else if (theta > 248 && theta <= 293)
+          moveElBy(pointer, 0, step);
+        else if (theta > 293 && theta <= 338)
+          moveElBy(pointer, step, step);
+        else
+          moveElBy(pointer, step, 0);
+      }
 
-function abortReply() {
+      // Set up next call.
 
-var i;
+      timerID = window.setTimeout('movepointer()', timeout);
+    }
 
-// Stop any current animation.
+    function circlepointer() {
 
-if (timerID)
-  clearTimeout(timerID);
-response = "";
-inReply = false;
+      var x, y;
 
-// Reset pointer.
+      // Mouse on pointer?
 
-i = chars.indexOf("_");
-moveElTo(pointer, boardX + posX[i] - offsetX, boardY + posY[i] - offsetY);
-}
+      if (!inContact) {
+        timerID = window.setTimeout('circlepointer()', timeout);
+        return;
+      }
 
-// Utility functions.
+      // Move the pointer in a small circle.
 
-function clean(s) {
+      x = getElLeft(pointer) + step * Math.cos(angle);
+      y = getElTop(pointer) - step * Math.sin(angle);
+      moveElTo(pointer, x, y);
+      angle += Math.PI / 10;
+      if (angle < 2 * Math.PI)
+        timerID = window.setTimeout('circlepointer()', timeout);
+      else
+        movepointer();
+    }
 
-var i, c, t;
-var letters = "abcdefghijklmnopqrstuvwxyz";
+    function shakepointer() {
 
-// Convert string to lower case.
+      var dx, dy, x, y;
 
-t = s.toLowerCase();
+      // Mouse on pointer?
 
-// Expand any contractions.
+      if (inContact)
+        return;
 
-s = "";
-for (i = 0; i < t.length; i++) {
-  if (t.substr(i, 2) == "'s") {
-    s += " is";
-    i++;
-  }
-  else if (t.substr(i, 2) == "'t") {
-    s += " not";
-    i++;
-  }
-  else if (t.substr(i, 3) == "'ll") {
-    s += " will";
-    i += 2;
-  }
-  else
-    s += t.substr(i, 1);
-}
+      // Randomly move pointer around it's original position.
 
-// Replace any non-letters with spaces.
+      dx = Math.floor(Math.random() * 5) - 2;
+      dy = Math.floor(Math.random() * 5) - 2;
+      x = saveX + dx;
+      y = saveY + dy;
+      moveElTo(pointer, x, y);
+      timerID = window.setTimeout('shakepointer()', timeout);
+    }
 
-t = "";
-for (i = 0; i < s.length; i++) {
-  c = s.substr(i, 1);
-  if (letters.indexOf(c) >= 0)
-    t += c;
-  else
-    t += " ";
-}
-return t;
-}
+    // This handles the analysis of a question and generates a response.
+    // Lists of responses by category.
 
-function inList(list, word) {
+    var none = new Array("ask", "ask me", "i am here", "fear not", "speak",
+      "speak to me", "i hear", "i await");
+    var days = new Array("sunday", "monday", "tuesday", "wednesday", "thursday",
+      "friday", "saturday");
+    var months = new Array("january", "february", "march", "april", "may", "june",
+      "july", "august", "september", "october", "november",
+      "december");
+    var seasons = new Array("spring", "summer", "fall", "winter");
+    var times = new Array("never", "soon", "very soon", "tomorrow", "next week",
+      "not now", "later", "in time", "not yet", "midnight",
+      "at the proper time", "during the day", "at night");
+    var people = new Array("a friend", "a stranger", "yourself", "no one",
+      "an associate", "one to be feared", "a liar",
+      "an imposter", "one unknown", "some one familiar",
+      "one dear", "unseen hands", "a trusted one", "an enemy",
+      "one close", "an old friend", "one from your past");
+    var places = new Array("far away", "close", "very near", "someplace new",
+      "not here", "at a crossroads", "a familiar place",
+      "near water", "location unknown", "a dark place");
+    var other = new Array("cannot say", "cannot tell", "unknown", "ask later",
+      "not known", "not seen", "leave me now", "maybe later",
+      "future hazy", "too dark", "not clear", "unclear");
 
-var i;
+    function consult() {
 
-// Return true if the given word is in the list.
+      var question, words, r;
+      var i, today;
 
-for (i = 0; i < list.length; i++)
-  if (list[i] == word)
-    return true;
-return false;
-}
+      // Stop any current animation.
 
-function pickFromList(list) {
+      if (timerID)
+        clearTimeout(timerID);
+      response = "";
+      inReply = false;
 
-var r;
+      // Clear any current reply.
+      replyFld.value = "";
 
-// Return a random word from a list.
+      // Make up a response based on keywords in the question.
 
-r = Math.floor(Math.random() * list.length);
-return list[r];
-}
+      question = questionFld.value;
+      question = clean(question);
+      words = question.split(" ");
+      r = Math.random();
 
-// Positioning utility functions.
+      // No question?
 
-function getPageOffsetLeft(el) {
+      if (question == "") {
+        response = pickFromList(none);
+        startReply();
+        return false;
+      }
 
-// Return the true x coordinate of an element relative to the page.
+      // Look for two words surrounding 'or' and pick one at random.
 
-return el.offsetLeft + (el.offsetParent ? getPageOffsetLeft(el.offsetParent) : 0);
-}
+      if (words.length >= 3)
+        for (i = 0; i < words.length - 3; i++)
+          if (words[i + 1] == "or") {
+            if (r < .5)
+              response = words[i];
+            else
+              response = words[i + 2];
+            startReply();
+            return false;
+          }
 
-function getPageOffsetTop(el) {
+      // At random, give an ambiguous response.
 
-// Return the true y coordinate of an element relative to the page.
+      if (r < .1)
+        response = pickFromList(other);
 
-return el.offsetTop + (el.offsetParent ? getPageOffsetTop(el.offsetParent) : 0);
-}
+      // Time related question?
 
-function getElLeft(el) {
+      else if (inList(words, "day")) {         // Pick a random day.
+        if (r < .7)
+          response = pickFromList(days);
+        else
+          response = pickFromList(times);
+      }
+      else if (inList(words, "month")) {    // Pick a random month.
+        if (r < .7)
+          response = pickFromList(months);
+        else
+          response = pickFromList(times);
+      }
+      else if (inList(words, "time"))            // Pick random time.
+        response = Math.floor(Math.random() * 12) + 1;
+      else if (inList(words, "when")) {          // Pick a random time.
+        if (r < .3)
+          response = pickFromList(days);
+        if (r < .4)
+          response = pickFromList(months);
+        if (r < .5)
+          response = pickFromList(seasons);
+        else
+          response = pickFromList(times);
+      }
 
-// Returns an element's x-coordinate.
+      // Asking for a number?
 
-return parseInt(el.style.left, 10);
-}
+      else if (inList(words, "how") &&
+        (inList(words, "few") ||
+          inList(words, "often") ||
+          inList(words, "many") ||
+          inList(words, "much"))) {
+        response = Math.round(Math.random() * 10) + 1;    // Give a one or two digit
+        if (response != 10 && r < .5)                     // random number.
+          response += Math.round(Math.random() * 10);
+      }
 
-function getElTop(el) {
+      // Asking about a person?
 
-// Returns an element's y-coordinate.
+      else if (inList(words, "who")) {
+        response = pickFromList(people);
+      }
 
-return parseInt(el.style.top, 10);
-}
+      // Asking about a place?
 
-function moveElTo(el, x, y) {
+      else if (inList(words, "where"))
+        response = pickFromList(places);
 
-// Move an element to the specified coordinates.
+      // Asking about a thing?
 
-el.style.left = x + "px";
-el.style.top  = y + "px";
-}
+      else if (inList(words, "what"))
+        response = pickFromList(other);
 
-function moveElBy(el, dx, dy) {
+      // Yes or no question?
 
-// Move an element by the specified offsets.
+      else if (inList(words, "am") ||
+        inList(words, "is") ||
+        inList(words, "are") ||
+        inList(words, "does") ||
+        inList(words, "do") ||
+        inList(words, "can") ||
+        inList(words, "will") ||
+        inList(words, "may") ||
+        inList(words, "could") ||
+        inList(words, "would") ||
+        inList(words, "should")) {
+        if (r < .5)
+          response = "!";
+        else
+          response = "~";
+      }
 
-el.style.left = (getElLeft(el) + dx) + "px";
-el.style.top  = (getElTop(el)  + dy) + "px";
-}
+      // All else failed, give a nice, ambiguous response.
 
-</script>
+      if (response == "")
+        response = pickFromList(other);
+
+      // Start the animation.
+
+      startReply();
+    }
+
+    function abortReply() {
+
+      var i;
+
+      // Stop any current animation.
+
+      if (timerID)
+        clearTimeout(timerID);
+      response = "";
+      inReply = false;
+
+      // Reset pointer.
+
+      i = chars.indexOf("_");
+      moveElTo(pointer, boardX + posX[i] - offsetX, boardY + posY[i] - offsetY);
+    }
+
+    // Utility functions.
+
+    function clean(s) {
+
+      var i, c, t;
+      var letters = "abcdefghijklmnopqrstuvwxyz";
+
+      // Convert string to lower case.
+
+      t = s.toLowerCase();
+
+      // Expand any contractions.
+
+      s = "";
+      for (i = 0; i < t.length; i++) {
+        if (t.substr(i, 2) == "'s") {
+          s += " is";
+          i++;
+        }
+        else if (t.substr(i, 2) == "'t") {
+          s += " not";
+          i++;
+        }
+        else if (t.substr(i, 3) == "'ll") {
+          s += " will";
+          i += 2;
+        }
+        else
+          s += t.substr(i, 1);
+      }
+
+      // Replace any non-letters with spaces.
+
+      t = "";
+      for (i = 0; i < s.length; i++) {
+        c = s.substr(i, 1);
+        if (letters.indexOf(c) >= 0)
+          t += c;
+        else
+          t += " ";
+      }
+      return t;
+    }
+
+    function inList(list, word) {
+
+      var i;
+
+      // Return true if the given word is in the list.
+
+      for (i = 0; i < list.length; i++)
+        if (list[i] == word)
+          return true;
+      return false;
+    }
+
+    function pickFromList(list) {
+
+      var r;
+
+      // Return a random word from a list.
+
+      r = Math.floor(Math.random() * list.length);
+      return list[r];
+    }
+
+    // Positioning utility functions.
+
+    function getPageOffsetLeft(el) {
+
+      // Return the true x coordinate of an element relative to the page.
+
+      return el.offsetLeft + (el.offsetParent ? getPageOffsetLeft(el.offsetParent) : 0);
+    }
+
+    function getPageOffsetTop(el) {
+
+      // Return the true y coordinate of an element relative to the page.
+
+      return el.offsetTop + (el.offsetParent ? getPageOffsetTop(el.offsetParent) : 0);
+    }
+
+    function getElLeft(el) {
+
+      // Returns an element's x-coordinate.
+
+      return parseInt(el.style.left, 10);
+    }
+
+    function getElTop(el) {
+
+      // Returns an element's y-coordinate.
+
+      return parseInt(el.style.top, 10);
+    }
+
+    function moveElTo(el, x, y) {
+
+      // Move an element to the specified coordinates.
+
+      el.style.left = x + "px";
+      el.style.top = y + "px";
+    }
+
+    function moveElBy(el, dx, dy) {
+
+      // Move an element by the specified offsets.
+
+      el.style.left = (getElLeft(el) + dx) + "px";
+      el.style.top = (getElTop(el) + dy) + "px";
+    }
+
+  </script>
 </head>
 
 <body>
   <header>
     <nav id="header-nav">
       <a href="index.html">
-        <img src="https://fontmeme.com/permalink/210507/c6bcb67961f6884dbc5df569e05a82ef.png" alt="halloween-fonts" border="0"></a>     
+        <img src="https://fontmeme.com/permalink/210507/c6bcb67961f6884dbc5df569e05a82ef.png" width="55%" height="100%"
+          alt="halloween-fonts" border="0"></a>
     </nav>
-</header>              
+  </header>
 
-<div id="pointer">
-	<img src="p.png" width="200" height="236" usemap="#pointerMap" alt=""/>
-	<map id="pointerMap" name="pointerMap">
-		<area shape="poly"
-		      coords="075,005,115,075,140,180,115,195,075,190,035,195,010,180,035,075" 
-		      alt=""
-		      onmouseover="handsOn()"
-		      onmouseout="handsOff()"
-		      onclick="return false" />
-	</map>
-</div>
+  <div id="pointer">
+    <img src="p.png" width="200" height="236" usemap="#pointerMap" alt="" />
+    <map id="pointerMap" name="pointerMap">
+      <area shape="poly" coords="075,005,115,075,140,180,115,195,075,190,035,195,010,180,035,075" alt=""
+        onmouseover="handsOn()" onmouseout="handsOff()" onclick="return false" />
+    </map>
+  </div>
 
-<div id="main">
-  	<form action="" onsubmit="consult(); return false;">
-        <div>
-            <p class="text i"> Tell us what you want to know:
-                <input id="question" name="question" type="text" size="50"/>
-                <input class="button" type="submit" value="Ask"/>
-                <input class="button" type="reset" value="Clear" onclick="abortReply(); return true;"/>
-            </p>
-            <p class="text h" align="center"> Hold your mouse lightly on the pointer and follow it as your answer is revealed. </p>
-        </div>
+  <div id="main">
+    <form action="" onsubmit="consult(); return false;">
+      <div>
+        <p class="text i"> Tell us what you want to know:
+          <input id="question" name="question" type="text" size="50" />
+          <input class="button" type="submit" value="Ask" />
+          <input class="button" type="reset" value="Clear" onclick="abortReply(); return true;" />
+        </p>
+        <p class="text h" align="center"> Hold your mouse lightly on the pointer and follow it as your answer is
+          revealed. </p>
+      </div>
 
       <div>
-        <img id="board" src="board.jpg" width="800" height="533"/>
+        <img id="board" src="board.jpg" width="800" height="533" />
       </div>
-      <div class="text i"> Your answer: <input id="reply" name="reply" type="text" readonly="readonly" size="50"/> </div>		
-	</form>
-</div>
-
-<footer>
-  <div class = "contain">
-    <div>&copy;2021</div>
+      <div class="text i"> Your answer: <input id="reply" name="reply" type="text" readonly="readonly" size="50" />
+      </div>
+    </form>
   </div>
-</footer>
+
+  <footer>
+    <div class="contain">
+      <div>&copy;2021</div>
+    </div>
+  </footer>
 </body>
+
 </html>

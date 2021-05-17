@@ -47,7 +47,7 @@ img {
     text-align: center;
   }
 
-  #header-nav {
+#header-nav {
     border-radius: 0;
     border: 0;
     padding-top: 15px;
@@ -94,4 +94,21 @@ img {
     margin-bottom: 40px;
     text-shadow: 1px 1px 2px rgb(253, 252, 252), 0 0 1em rgb(252, 252, 253), 0 0 0.2em rgb(245, 245, 253);
     color: rgb(7, 7, 7);
+}
+
+/*Responsive Framework. */ 
+/*------ Tablet ------*/
+@media (min-width: 768px) and (max-width: 991px){
+    #main{
+        margin-left: 8%;
+        margin-right: 8%;
+    }
+    
+    .i{
+        margin-left: 17%;
+    }
+
+    .h{
+        margin-left: 17%;
+    }
 }
