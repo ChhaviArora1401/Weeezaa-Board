@@ -111,7 +111,7 @@ a {
     float: left;
 }
 
-.button {
+.button1 {
   border-radius: 8px;
   /* background-image:url('https://scx2.b-cdn.net/gfx/news/hires/2018/1-illuminating.jpg'); */
   background-color: white;
@@ -127,14 +127,14 @@ a {
   margin: 5px;
 }
 
-.button span {
+.button1 span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.button span:after {
+.button1 span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -143,11 +143,11 @@ a {
   transition: 0.5s;
 }
 
-.button:hover span {
+.button1:hover span {
   padding-right: 25px;
 }
 
-.button:hover span:after {
+.button1:hover span:after {
   opacity: 1;
   right: 0;
 }
@@ -196,7 +196,7 @@ a {
     margin-left:25%;
   }
 
-  .button{
+  .button1{
     margin-left: 32%;
   }
 
@@ -258,7 +258,7 @@ a {
     margin-left:10%;
   }
 
-  .button{
+  .button1{
     margin-left: 32%;
   }
 
@@ -386,7 +386,7 @@ a {
       margin-left: -20%;
     }
 
-    .button{
+    .button1{
       margin-left: 10%;
     }
 
@@ -396,3 +396,88 @@ a {
       margin-left: -15%;
     }
   }
+
+  /* styles for the game page */
+  /* Defines default styles for web page. */
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+img {
+  border-width: 0px;
+}
+
+#pointer {
+  position: absolute;
+  visibility: hidden;
+}
+
+#reply {
+  background-color: #202020;
+  border: 1px solid #a0a0a0;
+  color: #f0f0f0;
+}
+
+#main {
+  margin: auto;
+  text-align: center;
+  width: 70%;
+}
+
+#header-navi {
+  border-radius: 0;
+  border: 0;
+  padding-top: 15px;
+  height: 100px;
+  margin-bottom: 40px;  
+  text-align: center;  
+}
+
+.glow {
+  text-shadow: 1px 1px 2px rgb(253, 252, 252), 0 0 1em rgb(252, 252, 253), 0 0 0.2em rgb(245, 245, 253);
+  color: rgb(7, 7, 7);
+  font-size: 30px;
+}  
+
+.i{
+  margin-top: 2%;   
+  margin-left: auto;
+  margin-right:auto;
+  text-align: center;
+  font-size:30px;
+  padding-bottom: 3px;      
+  text-shadow: 1px 1px 2px rgb(253, 252, 252), 0 0 1em rgb(252, 252, 253), 0 0 0.2em rgb(245, 245, 253);
+  color: rgb(7, 7, 7);
+ 
+}
+
+.h{
+  margin-left: auto;
+  margin-right:auto;
+  text-align: center;
+  font-size:30px;
+  max-width: 100%;
+  margin-bottom: 40px;
+  text-shadow: 1px 1px 2px rgb(253, 252, 252), 0 0 1em rgb(252, 252, 253), 0 0 0.2em rgb(245, 245, 253);
+  color: rgb(7, 7, 7);
+}
+
+/*Responsive Framework. */ 
+/*------ Tablet ------*/
+@media (min-width: 768px) and (max-width: 991px){
+  #main{
+      margin-left: 8%;
+      margin-right: 8%;
+  }
+  
+  .i{
+      margin-left: 17%;
+  }
+
+  .h{
+      margin-left: 17%;
+  }
+}

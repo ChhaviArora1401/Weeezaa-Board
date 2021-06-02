@@ -5,7 +5,7 @@
   <title>Weeezaa Board</title>
   <link rel="icon" href="favicon1.jpg" type="image/x-icon">
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <link href="css.css" rel="stylesheet" type="text/css" />
+  <link href="styles.css" rel="stylesheet" type="text/css" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Flavors&display=swap" rel="stylesheet">
   <script src="script.js"></script>
@@ -14,9 +14,15 @@
   </script> -->
 </head>
 
-<body>
+<body style="background-image: url('images/bg.jpg');
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+color: #f0f0f0;
+margin: 0;
+font-family: 'Flavors', cursive;">
   <header>
-    <nav id="header-nav">
+    <nav id="header-navi">
       <a href="index.html">
         <img src="https://fontmeme.com/permalink/210507/c6bcb67961f6884dbc5df569e05a82ef.png" width="55%" height="100%"
           alt="halloween-fonts" border="0"></a>
@@ -24,7 +30,7 @@
   </header>
 
   <div id="pointer">
-    <img src="p.png" width="200" height="236" usemap="#pointerMap" alt="" />
+    <img src="images/p.png" width="200" height="236" usemap="#pointerMap" alt="" />
     <map id="pointerMap" name="pointerMap">
       <area shape="poly" coords="075,005,115,075,140,180,115,195,075,190,035,195,010,180,035,075" alt=""
         onmouseover="handsOn()" onmouseout="handsOff()" onclick="return false" />
@@ -44,7 +50,7 @@
       </div>
 
       <div>
-        <img id="board" src="board.jpg" width="800" height="533" />
+        <img id="board" src="images/board.jpg" width="800" height="533" />
       </div>
       <div class="text i"> Your answer: <input id="reply" name="reply" type="text" readonly="readonly" size="50" />
       </div>
