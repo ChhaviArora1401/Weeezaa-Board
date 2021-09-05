@@ -10,8 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Flavors&display=swap" rel="stylesheet">
   <script src="script.js"></script>
 
-  <!-- <script type="text/javascript">
-  </script> -->
 </head>
 
 <body style="background-image: url('images/bg.jpg');
@@ -21,11 +19,12 @@ background-size: cover;
 color: #f0f0f0;
 margin: 0;
 font-family: 'Flavors', cursive;">
+
   <header>
     <nav id="header-navi">
       <a href="index.html">
         <img src="https://fontmeme.com/permalink/210507/c6bcb67961f6884dbc5df569e05a82ef.png" width="55%" height="100%"
-          alt="halloween-fonts" border="0"></a>
+          alt="halloween-fonts" border="0px"></a>
     </nav>
   </header>
 
@@ -41,9 +40,9 @@ font-family: 'Flavors', cursive;">
     <form action="" onsubmit="consult(); return false;">
       <div>
         <p class="text i"> Tell us what you want to know:
-          <input id="question" name="question" type="text" size="50" />
-          <input class="button" type="submit" value="Ask" />
-          <input class="button" type="reset" value="Clear" onclick="abortReply(); return true;" />
+          <input id="question" name="question" class="ques" type="text" size="50" />
+          <input class="button" type="submit" id="button1" value="Ask" />
+          <input class="button" type="reset" id="button2" value="Clear" onclick="back();" />
         </p>
         <p class="text h" align="center"> Hold your mouse lightly on the pointer and follow it as your answer is
           revealed. </p>
@@ -53,6 +52,7 @@ font-family: 'Flavors', cursive;">
         <img id="board" src="images/board.jpg" width="800" height="533" />
       </div>
       <div class="text i"> Your answer: <input id="reply" name="reply" type="text" readonly="readonly" size="50" />
+        <input class="button" type="reset" value="Stop" id="button3" onclick="abortReply(); return true;" />
       </div>
     </form>
   </div>
